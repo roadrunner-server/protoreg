@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package service.v1;
+
+import "common/v1/message.proto";
+
+service Test {
+  rpc Echo (common.v1.Message) returns (common.v1.Message) {
+  }
+
+  rpc Ping (common.v1.EmptyMessage) returns (common.v1.EmptyMessage) {
+  }
+}

@@ -1,0 +1,14 @@
+version: '3'
+
+logs:
+  mode: raw
+  line_ending: ""
+  level: error
+
+protoreg:
+  import_paths:
+    - proto/commonapis
+    - proto/serviceapis
+  proto:
+    - service/v1/service.proto
+    - service/v1/service_dup.proto

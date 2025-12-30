@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package service.v1;
+
+import "common/v1/message.proto";
+
+service Test {
+  rpc Call (common.v1.Message) returns (common.v1.Message) {
+  }
+}
