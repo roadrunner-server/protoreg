@@ -28,12 +28,12 @@ func (p *Plugin) InitRegistry() (*ProtoRegistry, error) {
 	}
 
 	parser := &protoparse.Parser{
-		ImportPaths: p.config.ImportPaths,
+		ImportPaths: p.config.ProtoPath,
 	}
 
 	files := &protoregistry.Files{}
 
-	fds, err := parser.ParseFiles(p.config.Proto...)
+	fds, err := parser.ParseFiles(p.config.Files...)
 	if err != nil {
 		return nil, err
 	}

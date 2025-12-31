@@ -12,6 +12,8 @@ require (
 	github.com/stretchr/testify v1.11.1
 )
 
+replace github.com/roadrunner-server/protoreg/v5 => ../
+
 require (
 	github.com/bufbuild/protocompile v0.14.1 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
@@ -45,5 +47,3 @@ require (
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/roadrunner-server/protoreg/v5 => ../

@@ -12,5 +12,3 @@ protoreg:
   files:
     - service/v1/service.proto
     - service/v1/service_dup.proto
-
-grpc: {}

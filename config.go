@@ -8,15 +8,15 @@ import (
 )
 
 type Config struct {
-	ImportPaths []string `mapstructure:"import_paths"`
-	Proto       []string `mapstructure:"proto"`
+	ProtoPath []string `mapstructure:"proto_path"`
+	Files     []string `mapstructure:"files"`
 }
 
 func (c *Config) InitDefaults() error { //nolint:gocyclo,gocognit
 	const op = errors.Op("protoreg_plugin_config")
 
-	importPaths := make([]string, 0, len(c.ImportPaths))
-	for _, path := range c.ImportPaths {
+	protoPaths := make([]string, 0, len(c.ProtoPath))
+	for _, path := range c.ProtoPath {
 		if path == "" {
 			continue
 		}
@@ -28,29 +28,29 @@ func (c *Config) InitDefaults() error { //nolint:gocyclo,gocognit
 
 		if _, err := os.Stat(path); err != nil {
 			if os.IsNotExist(err) {
-				return errors.E(op, errors.Errorf("import path '%s' does not exist", importPath))
+				return errors.E(op, errors.Errorf("proto_path '%s' does not exist", importPath))
 			}
 
 			return errors.E(op, err)
 		}
 
-		importPaths = append(importPaths, path)
+		protoPaths = append(protoPaths, path)
 	}
 
-	if len(importPaths) == 0 {
-		return errors.E(op, errors.Errorf("no import path specified"))
+	if len(protoPaths) == 0 {
+		return errors.E(op, errors.Errorf("no proto_path specified"))
 	}
 
-	protos := make([]string, 0)
-	for _, path := range c.Proto {
+	files := make([]string, 0)
+	for _, path := range c.Files {
 		if path == "" {
 			continue
 		}
 
 		exists := false
 
-		for _, importPath := range importPaths {
-			if _, err := os.Stat(filepath.Join(importPath, path)); err == nil {
+		for _, protoPath := range protoPaths {
+			if _, err := os.Stat(filepath.Join(protoPath, path)); err == nil {
 				exists = true
 			}
 		}
@@ -59,14 +59,14 @@ func (c *Config) InitDefaults() error { //nolint:gocyclo,gocognit
 			return errors.E(op, errors.Errorf("proto file '%s' does not exist", path))
 		}
 
-		protos = append(protos, path)
+		files = append(files, path)
 	}
 
-	if len(protos) == 0 {
-		return errors.E(op, errors.Errorf("no proto specified"))
+	if len(files) == 0 {
+		return errors.E(op, errors.Errorf("no proto files specified"))
 	}
 
-	c.Proto = protos
+	c.Files = files
 
 	return nil
 }

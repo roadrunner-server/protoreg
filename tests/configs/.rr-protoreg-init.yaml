@@ -6,8 +6,10 @@ logs:
   level: error
 
 protoreg:
-  import_paths:
+  proto_path:
     - proto/commonapis
     - proto/serviceapis
-  proto:
+  files:
     - service/v1/service.proto
+
+grpc: {}

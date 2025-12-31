@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	pluginName string = "protoreg"
+	pluginName     string = "protoreg"
+	rootPluginName string = "grpc"
 )
 
 type Configurer interface {
@@ -37,6 +38,9 @@ func (p *Plugin) Init(cfg Configurer, log Logger) error {
 
 	if !cfg.Has(pluginName) {
 		return errors.E(errors.Disabled)
+	}
+	if !cfg.Has(rootPluginName) {
+		return errors.E(op, errors.Disabled)
 	}
 
 	err := cfg.UnmarshalKey(pluginName, &p.config)
