@@ -4,15 +4,13 @@ on:
   push:
     branches:
       - master
-      - stable
   pull_request:
     branches:
       - master
-      - stable
 
 jobs:
-  grpc_test:
-    name: gRPC plugin (Go ${{ matrix.go }}, OS ${{matrix.os}})
+  protoreg_test:
+    name: protoreg plugin (Go ${{ matrix.go }}, OS ${{matrix.os}})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
     strategy:
