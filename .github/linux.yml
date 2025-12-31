@@ -49,7 +49,7 @@ jobs:
 
       - name: Run golang root module tests
         run: |
-          go test -timeout 20m -v -race -cover -tags=debug -failfast -coverprofile=./tests/coverage-ci/protoreg_root.out -covermode=atomic ./codec
+          go test -timeout 20m -v -race -cover -tags=debug -failfast -coverprofile=./tests/coverage-ci/protoreg_root.out -covermode=atomic
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
