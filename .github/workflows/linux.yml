@@ -9,8 +9,8 @@ on:
       - master
 
 jobs:
-  grpc_test:
-    name: gRPC plugin (Go ${{ matrix.go }}, OS ${{matrix.os}})
+  protoreg_test:
+    name: protoreg plugin (Go ${{ matrix.go }}, OS ${{matrix.os}})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
     strategy:
