@@ -5,12 +5,7 @@ import (
 
 	"github.com/roadrunner-server/endure/v2/dep"
 	"github.com/roadrunner-server/errors"
-	"github.com/roadrunner-server/protoreg/v5/codec"
 	"go.uber.org/zap"
-	"google.golang.org/grpc/encoding"
-
-	// Will register via init
-	_ "google.golang.org/grpc/encoding/gzip"
 )
 
 const (
@@ -35,13 +30,6 @@ type Plugin struct {
 	config   *Config
 	log      *zap.Logger
 	registry *ProtoRegistry
-}
-
-// needed to register our codec only once. Double registration will cause panic.
-func init() {
-	encoding.RegisterCodec(&codec.Codec{
-		Base: encoding.GetCodecV2(codec.Name),
-	})
 }
 
 func (p *Plugin) Init(cfg Configurer, log Logger) error {
