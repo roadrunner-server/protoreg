@@ -22,6 +22,15 @@ func (c *Config) InitDefaults() error { //nolint:gocyclo,gocognit
 		return errors.E(op, errors.Errorf("proto_path and files must be specified"))
 	}
 
+	// do not believe user input - validate each proto_path entry
+	// check for empty strings in files
+	// proto path would be checked in the c.ProtoPath loop
+	for _, f := range c.Files {
+		if strings.TrimSpace(f) == "" {
+			return errors.E(op, errors.Errorf("files entries cannot be empty"))
+		}
+	}
+
 	// map to track found files
 	// struct{} to save memory
 	found := make(map[string]struct{}, len(c.Files))
@@ -30,7 +39,6 @@ func (c *Config) InitDefaults() error { //nolint:gocyclo,gocognit
 	// but n and m are expected to be small
 	// so this is acceptable
 	for _, ppath := range c.ProtoPath {
-		// do not believe user input - validate each proto_path entry
 		if strings.TrimSpace(ppath) == "" {
 			return errors.E(op, errors.Errorf("proto_path entry cannot be empty"))
 		}
@@ -51,10 +59,6 @@ func (c *Config) InitDefaults() error { //nolint:gocyclo,gocognit
 		// in this loop we check if we already found the file - if yes, skip searching
 		// else, try to find it in the current proto_path
 		for _, file := range c.Files {
-			// check for the edge case when the filename is empty string
-			if strings.TrimSpace(file) == "" {
-				return errors.E(op, errors.Errorf("proto file path cannot be empty"))
-			}
 			// if we saw it already, skip searching
 			// this avoids redundant os.Stat calls
 			// not much optimization, but still...
