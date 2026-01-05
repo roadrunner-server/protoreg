@@ -34,6 +34,33 @@ func TestInitDefaults(t *testing.T) {
 				"./tests/proto/commonapis",
 				"./tests/proto/serviceapis",
 			},
+			files:     []string{"        "},
+			assertion: assert.Error,
+		},
+		{
+			name: "whitespace strings in files",
+			protoPath: []string{
+				"./tests/proto/commonapis",
+				"./tests/proto/serviceapis",
+			},
+			files:     []string{"\n"},
+			assertion: assert.Error,
+		},
+		{
+			name: "whitespace strings in files",
+			protoPath: []string{
+				"./tests/proto/commonapis",
+				"./tests/proto/serviceapis",
+			},
+			files:     []string{"\t"},
+			assertion: assert.Error,
+		},
+		{
+			name: "whitespace strings in files",
+			protoPath: []string{
+				"./tests/proto/commonapis",
+				"./tests/proto/serviceapis",
+			},
 			files:     []string{"        ", "\n", "\t", "  "},
 			assertion: assert.Error,
 		},
