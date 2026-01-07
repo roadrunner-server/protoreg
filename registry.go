@@ -1,56 +1,55 @@
 package protoreg
 
 import (
-	er "errors"
+	"context"
 	"strings"
 
-	"github.com/jhump/protoreflect/desc"
-	"github.com/jhump/protoreflect/desc/protoparse"
+	"github.com/bufbuild/protocompile"
 	"github.com/jhump/protoreflect/v2/protoresolve"
 	"github.com/roadrunner-server/errors"
+	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/reflect/protoregistry"
 )
 
 type Registry interface {
 	Registry() *protoresolve.Registry
-	Services() map[string]*desc.ServiceDescriptor
-	FindMethodByFullPath(method string) (*desc.MethodDescriptor, error)
+	Services() map[string]protoreflect.ServiceDescriptor
+	FindMethodByFullPath(method string) (protoreflect.MethodDescriptor, error)
 }
 
 type ProtoRegistry struct {
 	registry *protoresolve.Registry
-	services map[string]*desc.ServiceDescriptor
+	services map[string]protoreflect.ServiceDescriptor
 }
 
 func (p *Plugin) InitRegistry() (*ProtoRegistry, error) {
 	reg := &ProtoRegistry{
-		services: make(map[string]*desc.ServiceDescriptor),
+		services: make(map[string]protoreflect.ServiceDescriptor),
 	}
 
-	parser := &protoparse.Parser{
-		ImportPaths: p.config.ProtoPath,
+	compiler := protocompile.Compiler{
+		Resolver: protocompile.WithStandardImports(&protocompile.SourceResolver{
+			ImportPaths: p.config.ProtoPath,
+		}),
 	}
 
-	files := &protoregistry.Files{}
-
-	fds, err := parser.ParseFiles(p.config.Files...)
+	ctx := context.Background()
+	fds, err := compiler.Compile(ctx, p.config.Files...)
 	if err != nil {
 		return nil, err
 	}
 
-	for _, file := range fds {
-		err = files.RegisterFile(file.UnwrapFile())
+	files := &protoregistry.Files{}
+	for _, fd := range fds {
+		err = files.RegisterFile(fd)
 		if err != nil {
 			return nil, err
 		}
 
-		err = registerDependencies(files, parser, file.GetDependencies())
-		if err != nil {
-			return nil, err
-		}
-
-		for _, service := range file.GetServices() {
-			reg.services[service.GetFullyQualifiedName()] = service
+		// Collect services
+		for i := 0; i < fd.Services().Len(); i++ {
+			svc := fd.Services().Get(i)
+			reg.services[string(svc.FullName())] = svc
 		}
 	}
 
@@ -68,12 +67,12 @@ func (reg *ProtoRegistry) Registry() *protoresolve.Registry {
 }
 
 // Services returns the service descriptors map
-func (reg *ProtoRegistry) Services() map[string]*desc.ServiceDescriptor {
+func (reg *ProtoRegistry) Services() map[string]protoreflect.ServiceDescriptor {
 	return reg.services
 }
 
 // FindMethodByFullPath finds a method descriptor by full method path
-func (reg *ProtoRegistry) FindMethodByFullPath(method string) (*desc.MethodDescriptor, error) {
+func (reg *ProtoRegistry) FindMethodByFullPath(method string) (protoreflect.MethodDescriptor, error) {
 	parts := strings.Split(strings.TrimPrefix(method, "/"), "/")
 	if len(parts) != 2 {
 		return nil, errors.Errorf("Unexpected method")
@@ -84,47 +83,5 @@ func (reg *ProtoRegistry) FindMethodByFullPath(method string) (*desc.MethodDescr
 		return nil, errors.Errorf("Service not found: %s", parts[0])
 	}
 
-	return service.FindMethodByName(parts[1]), nil
-}
-
-func registerDependencies(files *protoregistry.Files, parser *protoparse.Parser, deps []*desc.FileDescriptor) error {
-	const op = errors.Op("protoreg_registry_parse_proto")
-
-	if len(deps) == 0 {
-		return nil
-	}
-
-	filenames := filenamesFromDesc(deps)
-
-	fds, err := parser.ParseFiles(filenames...)
-	if err != nil {
-		return errors.E(op, err)
-	}
-
-	for _, fd := range fds {
-		_, err = files.FindFileByPath(fd.GetName())
-		if er.Is(err, protoregistry.NotFound) {
-			err = files.RegisterFile(fd.UnwrapFile())
-			if err != nil {
-				return errors.E(op, err)
-			}
-		}
-
-		err := registerDependencies(files, parser, fd.GetDependencies())
-		if err != nil {
-			return errors.E(op, err)
-		}
-	}
-
-	return nil
-}
-
-func filenamesFromDesc(files []*desc.FileDescriptor) []string {
-	names := make([]string, len(files))
-
-	for i, file := range files {
-		names[i] = file.GetName()
-	}
-
-	return names
+	return service.Methods().ByName(protoreflect.Name(parts[1])), nil
 }
