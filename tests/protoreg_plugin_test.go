@@ -48,6 +48,7 @@ func TestProtoregInit(t *testing.T) {
 	assert.NoError(t, err)
 
 	unknown, err := registry.FindMethodByFullPath("service.v1.Test/Unknown")
+	assert.NoError(t, err)
 	assert.Nil(t, unknown)
 }
 

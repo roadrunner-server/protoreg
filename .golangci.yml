@@ -50,10 +50,6 @@ linters:
       simple: true
       range-loops: true
       for-loops: true
-    staticcheck:
-      checks:
-        - all
-        - "-SA1019"
     wsl:
       allow-assign-and-anything: true
     revive:
