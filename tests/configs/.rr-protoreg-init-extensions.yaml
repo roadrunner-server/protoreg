@@ -1,0 +1,15 @@
+version: '3'
+
+logs:
+  mode: raw
+  line_ending: ""
+  level: error
+
+protoreg:
+  proto_path:
+    - proto/googleapis
+    - proto/restapis
+  files:
+    - endpoint/v1/service.proto
+
+grpc: {}

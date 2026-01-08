@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package endpoint.v1;
+
+import "google/api/annotations.proto";
+
+service DocumentService {
+  rpc GetDocument (GetDocumentRequest) returns (GetDocumentResponse) {
+    option (google.api.http) = {
+      get: "/v1/documents/{id}"
+    };
+  }
+}
+
+message GetDocumentRequest {
+  string id = 1;
+}
+
+message GetDocumentResponse {
+  Document document = 1;
+}
+
+message Document {
+  string name = 1;
+  bytes contents = 2;
+}
