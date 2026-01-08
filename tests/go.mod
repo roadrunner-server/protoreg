@@ -10,6 +10,7 @@ require (
 	github.com/roadrunner-server/protoreg/v5 v5.0.0
 	github.com/stretchr/testify v1.11.1
 	go.uber.org/zap v1.27.1
+	google.golang.org/genproto/googleapis/api v0.0.0-20251222181119-0a764e51fe1b
 )
 
 replace github.com/roadrunner-server/protoreg/v5 => ../
