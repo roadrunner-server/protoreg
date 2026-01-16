@@ -2,7 +2,7 @@ module tests
 
 go 1.25
 
-toolchain go1.25.5
+toolchain go1.25.6
 
 require (
 	github.com/roadrunner-server/config/v5 v5.1.9
@@ -10,7 +10,7 @@ require (
 	github.com/roadrunner-server/protoreg/v5 v5.0.0
 	github.com/stretchr/testify v1.11.1
 	go.uber.org/zap v1.27.1
-	google.golang.org/genproto/googleapis/api v0.0.0-20260112192933-99fd39fd28a9
+	google.golang.org/genproto/googleapis/api v0.0.0-20260114163908-3f89685c29c3
 	google.golang.org/protobuf v1.36.11
 )
 

@@ -2,7 +2,7 @@ module github.com/roadrunner-server/protoreg/v5
 
 go 1.25
 
-toolchain go1.25.5
+toolchain go1.25.6
 
 require (
 	github.com/jhump/protoreflect v1.17.1-0.20240913204751-8f5fd1dcb3c5
