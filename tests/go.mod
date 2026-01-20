@@ -10,7 +10,7 @@ require (
 	github.com/roadrunner-server/protoreg/v5 v5.0.0
 	github.com/stretchr/testify v1.11.1
 	go.uber.org/zap v1.27.1
-	google.golang.org/genproto/googleapis/api v0.0.0-20260114163908-3f89685c29c3
+	google.golang.org/genproto/googleapis/api v0.0.0-20260120174246-409b4a993575
 	google.golang.org/protobuf v1.36.11
 )
 
