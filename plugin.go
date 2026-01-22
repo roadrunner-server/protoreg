@@ -1,3 +1,6 @@
+// Package protoreg provides a RoadRunner plugin for protobuf registry management.
+// It parses .proto files and their dependencies, building a registry of types and
+// services that can be used by other plugins such as gRPC for dynamic message handling.
 package protoreg
 
 import (
@@ -6,6 +9,7 @@ import (
 	"github.com/roadrunner-server/endure/v2/dep"
 	"github.com/roadrunner-server/errors"
 	"go.uber.org/zap"
+	_ "google.golang.org/genproto/protobuf/ptype"
 )
 
 const (
