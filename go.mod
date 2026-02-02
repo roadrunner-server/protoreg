@@ -11,7 +11,7 @@ require (
 	github.com/roadrunner-server/errors v1.4.1
 	github.com/stretchr/testify v1.11.1
 	go.uber.org/zap v1.27.1
-	google.golang.org/genproto v0.0.0-20260128011058-8636f8732409
+	google.golang.org/genproto v0.0.0-20260202165425-ce8ad4cf556b
 	google.golang.org/protobuf v1.36.11
 )
 
