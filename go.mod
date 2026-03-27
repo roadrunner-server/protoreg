@@ -8,7 +8,7 @@ require (
 	github.com/jhump/protoreflect v1.18.0
 	github.com/jhump/protoreflect/v2 v2.0.0-beta.2
 	github.com/roadrunner-server/endure/v2 v2.6.2
-	github.com/roadrunner-server/errors v1.4.1
+	github.com/roadrunner-server/errors v1.5.0
 	github.com/stretchr/testify v1.11.1
 	go.uber.org/zap v1.27.1
 	google.golang.org/genproto v0.0.0-20260209200024-4cfbd4190f57
