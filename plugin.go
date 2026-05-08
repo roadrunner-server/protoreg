@@ -4,11 +4,11 @@
 package protoreg
 
 import (
+	"log/slog"
 	"sync"
 
 	"github.com/roadrunner-server/endure/v2/dep"
 	"github.com/roadrunner-server/errors"
-	"go.uber.org/zap"
 	_ "google.golang.org/genproto/protobuf/ptype"
 )
 
@@ -27,13 +27,13 @@ type Configurer interface {
 }
 
 type Logger interface {
-	NamedLogger(name string) *zap.Logger
+	NamedLogger(name string) *slog.Logger
 }
 
 type Plugin struct {
 	mu       *sync.RWMutex
 	config   *Config
-	log      *zap.Logger
+	log      *slog.Logger
 	registry *ProtoRegistry
 }
 
