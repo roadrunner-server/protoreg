@@ -7,7 +7,7 @@ import (
 
 	"github.com/roadrunner-server/config/v5"
 	"github.com/roadrunner-server/endure/v2"
-	"github.com/roadrunner-server/protoreg/v5"
+	"github.com/roadrunner-server/protoreg/v6"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
