@@ -3,16 +3,15 @@ package protoreg_test
 import (
 	"log/slog"
 	"testing"
-	mocklogger "tests/mock"
 
 	"github.com/roadrunner-server/config/v5"
 	"github.com/roadrunner-server/endure/v2"
 	"github.com/roadrunner-server/protoreg/v6"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"go.uber.org/zap"
 	"google.golang.org/genproto/googleapis/api/annotations"
 	"google.golang.org/protobuf/proto"
+	mocklogger "tests/mock"
 )
 
 func TestProtoregInit(t *testing.T) {
@@ -23,7 +22,7 @@ func TestProtoregInit(t *testing.T) {
 		Path:    "configs/.rr-protoreg-init.yaml",
 	}
 
-	l, oLogger := mocklogger.ZapTestLogger(zap.DebugLevel)
+	l, oLogger := mocklogger.SlogTestLogger(slog.LevelDebug)
 
 	plugin := &protoreg.Plugin{}
 
@@ -59,7 +58,7 @@ func TestProtoregInitExtensions(t *testing.T) {
 		Path:    "configs/.rr-protoreg-init-extensions.yaml",
 	}
 
-	l, oLogger := mocklogger.ZapTestLogger(zap.DebugLevel)
+	l, oLogger := mocklogger.SlogTestLogger(slog.LevelDebug)
 
 	plugin := &protoreg.Plugin{}
 
@@ -98,7 +97,7 @@ func TestProtoregInitDuplicate(t *testing.T) {
 		Path:    "configs/.rr-protoreg-init-duplicate.yaml",
 	}
 
-	l, oLogger := mocklogger.ZapTestLogger(zap.DebugLevel)
+	l, oLogger := mocklogger.SlogTestLogger(slog.LevelDebug)
 
 	plugin := &protoreg.Plugin{}
 
@@ -126,7 +125,7 @@ func TestProtoregInitGrpcDisabled(t *testing.T) {
 		Path:    "configs/.rr-protoreg-init-grpc-disabled.yaml",
 	}
 
-	l, oLogger := mocklogger.ZapTestLogger(zap.DebugLevel)
+	l, oLogger := mocklogger.SlogTestLogger(slog.LevelDebug)
 
 	plugin := &protoreg.Plugin{}
 
