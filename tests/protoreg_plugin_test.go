@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"testing"
 
-	"github.com/roadrunner-server/config/v5"
+	"github.com/roadrunner-server/config/v6"
 	"github.com/roadrunner-server/endure/v2"
 	"github.com/roadrunner-server/protoreg/v6"
 	"github.com/stretchr/testify/assert"

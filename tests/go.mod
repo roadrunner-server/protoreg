@@ -5,7 +5,7 @@ go 1.26
 toolchain go1.26.0
 
 require (
-	github.com/roadrunner-server/config/v5 v5.1.9
+	github.com/roadrunner-server/config/v6 v6.0.0-beta.3
 	github.com/roadrunner-server/endure/v2 v2.6.2
 	github.com/roadrunner-server/protoreg/v6 v6.0.0
 	github.com/stretchr/testify v1.11.1
