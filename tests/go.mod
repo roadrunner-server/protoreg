@@ -2,14 +2,14 @@ module tests
 
 go 1.26
 
-toolchain go1.26.0
+toolchain go1.26.3
 
 require (
 	github.com/roadrunner-server/config/v6 v6.0.0-beta.3
 	github.com/roadrunner-server/endure/v2 v2.6.2
 	github.com/roadrunner-server/protoreg/v6 v6.0.0
 	github.com/stretchr/testify v1.11.1
-	google.golang.org/genproto/googleapis/api v0.0.0-20260504160031-60b97b32f348
+	google.golang.org/genproto/googleapis/api v0.0.0-20260511170946-3700d4141b60
 	google.golang.org/protobuf v1.36.11
 )
 
@@ -42,6 +42,6 @@ require (
 	golang.org/x/sync v0.20.0 // indirect
 	golang.org/x/sys v0.44.0 // indirect
 	golang.org/x/text v0.37.0 // indirect
-	google.golang.org/genproto v0.0.0-20260504160031-60b97b32f348 // indirect
+	google.golang.org/genproto v0.0.0-20260511170946-3700d4141b60 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
