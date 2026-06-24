@@ -9,7 +9,7 @@ require (
 	github.com/roadrunner-server/endure/v2 v2.6.2
 	github.com/roadrunner-server/protoreg/v6 v6.0.0
 	github.com/stretchr/testify v1.11.1
-	google.golang.org/genproto/googleapis/api v0.0.0-20260618152121-87f3d3e198d3
+	google.golang.org/genproto/googleapis/api v0.0.0-20260622175928-b703f567277d
 	google.golang.org/protobuf v1.36.11
 )
 
@@ -24,7 +24,7 @@ require (
 	github.com/jhump/protoreflect v1.18.0 // indirect
 	github.com/jhump/protoreflect/v2 v2.0.0-beta.2 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
-	github.com/mattn/go-colorable v0.1.14 // indirect
+	github.com/mattn/go-colorable v0.1.15 // indirect
 	github.com/mattn/go-isatty v0.0.22 // indirect
 	github.com/pelletier/go-toml/v2 v2.4.2 // indirect
 	github.com/petermattis/goid v0.0.0-20260619124436-7ab4bde3d003 // indirect
@@ -40,8 +40,8 @@ require (
 	go.uber.org/zap v1.28.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/sync v0.21.0 // indirect
-	golang.org/x/sys v0.45.0 // indirect
-	golang.org/x/text v0.37.0 // indirect
+	golang.org/x/sys v0.46.0 // indirect
+	golang.org/x/text v0.38.0 // indirect
 	google.golang.org/genproto v0.0.0-20260622175928-b703f567277d // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
