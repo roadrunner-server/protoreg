@@ -9,7 +9,7 @@ require (
 	github.com/roadrunner-server/endure/v2 v2.6.2
 	github.com/roadrunner-server/protoreg/v6 v6.0.0
 	github.com/stretchr/testify v1.11.1
-	google.golang.org/genproto/googleapis/api v0.0.0-20260720155508-bb71a54f79dc
+	google.golang.org/genproto/googleapis/api v0.0.0-20260720171339-e059f2f05d78
 	google.golang.org/protobuf v1.36.11
 )
 
