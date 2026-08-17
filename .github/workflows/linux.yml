@@ -41,18 +41,35 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run golang root module tests
+      - name: Run root module unit tests
+        run: |
+          mkdir ./tests/coverage-ci
+          go test -timeout 5m -v -race -cover -tags=debug -coverpkg=./... -coverprofile=./tests/coverage-ci/protoreg_unit.out -covermode=atomic ./...
+
+      - name: Run golang integration tests
         run: |
           cd tests
-          mkdir ./coverage-ci
-          go test -timeout 20m -v -race -cover -tags=debug -failfast -coverprofile=./coverage-ci/protoreg_root.out -covermode=atomic
+          go test -timeout 20m -v -race -cover -tags=debug -coverpkg=github.com/roadrunner-server/protoreg/v6/... -coverprofile=./coverage-ci/protoreg_root.out -covermode=atomic ./...
 
       - name: Transform code coverage results
         run: |
           cd tests/coverage-ci
           echo 'mode: atomic' > summary.txt
           tail -q -n +2 *.out >> summary.txt
-          sed -i '2,${/roadrunner/!d}' summary.txt
+          awk '
+            NR == 1 { print; next }
+            /^github\.com\/roadrunner-server\/protoreg\/v6\// {
+              sub(/^github\.com\/roadrunner-server\/protoreg\/v6\//, "", $0)
+              print
+            }
+          ' summary.txt > summary.filtered.txt
+          mv summary.filtered.txt summary.txt
+          # a profile that maps to no plugin source uploads fine and reports 0%
+          blocks=$(($(wc -l < summary.txt) - 1))
+          if [ "$blocks" -lt 10 ]; then
+            echo "::error::coverage summary holds $blocks blocks, the profile does not map to plugin sources"
+            exit 1
+          fi
 
       - name: upload to codecov
         uses: codecov/codecov-action@v7 # Docs: <https://github.com/codecov/codecov-action>
