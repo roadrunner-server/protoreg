@@ -9,7 +9,7 @@ require (
 	github.com/roadrunner-server/endure/v2 v2.6.2
 	github.com/roadrunner-server/protoreg/v6 v6.0.0
 	github.com/stretchr/testify v1.12.0
-	google.golang.org/genproto/googleapis/api v0.0.0-20260817212433-ac3dfec99bb1
+	google.golang.org/genproto/googleapis/api v0.0.0-20260818201246-1b0934165a6f
 	google.golang.org/protobuf v1.36.12
 )
 
@@ -40,6 +40,6 @@ require (
 	golang.org/x/sync v0.22.0 // indirect
 	golang.org/x/sys v0.47.0 // indirect
 	golang.org/x/text v0.41.0 // indirect
-	google.golang.org/genproto v0.0.0-20260817212433-ac3dfec99bb1 // indirect
+	google.golang.org/genproto v0.0.0-20260818201246-1b0934165a6f // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
