@@ -10,7 +10,7 @@ require (
 	github.com/roadrunner-server/endure/v2 v2.7.0
 	github.com/roadrunner-server/errors v1.6.0
 	github.com/stretchr/testify v1.12.1
-	google.golang.org/genproto v0.0.0-20261012220534-4341edf3f941
+	google.golang.org/genproto v0.0.0-20261019180522-ce908d29299b
 	google.golang.org/protobuf v1.36.12
 )
 
