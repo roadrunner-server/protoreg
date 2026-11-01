@@ -2,7 +2,7 @@ module github.com/roadrunner-server/protoreg/v6
 
 go 1.27
 
-toolchain go1.27.2
+toolchain go1.27.3
 
 require (
 	github.com/jhump/protoreflect v1.19.0
@@ -16,8 +16,8 @@ require (
 
 require (
 	github.com/golang/protobuf v1.5.4 // indirect
-	github.com/petermattis/goid v0.0.0-20260918085751-abfca077860b // indirect
-	go.yaml.in/yaml/v3 v3.0.5 // indirect
+	github.com/petermattis/goid v0.0.0-20261031113815-c1739d51dded // indirect
+	go.yaml.in/yaml/v3 v3.0.6 // indirect
 	golang.org/x/net v0.61.0 // indirect
 	golang.org/x/sync v0.24.0 // indirect
 )
