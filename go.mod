@@ -6,7 +6,7 @@ toolchain go1.27.3
 
 require (
 	github.com/jhump/protoreflect v1.19.0
-	github.com/jhump/protoreflect/v2 v2.0.0
+	github.com/jhump/protoreflect/v2 v2.0.1
 	github.com/roadrunner-server/endure/v2 v2.7.0
 	github.com/roadrunner-server/errors v1.6.0
 	github.com/stretchr/testify v1.12.1
